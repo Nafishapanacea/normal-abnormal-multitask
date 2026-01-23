@@ -1,0 +1,49 @@
+import torch
+from torch import nn, optim
+from torch.utils.data import DataLoader
+from dataset import XrayDataset
+from multimodel import Multimodel
+from transform import train_transform, val_transform
+from utils import train_one_epoch, validate
+
+img_dir = ''
+train_csv = '' 
+val_csv = ''
+
+epochs = 100
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+def train():
+    train_dataset = XrayDataset(img_dir, train_csv, transform=train_transform)
+    val_dataset = XrayDataset(img_dir, val_csv, transform=val_transform)
+
+    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=4)
+    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=4)
+
+    model = Multimodel().to(device)
+    criterian = nn.BCEWithLogitsLoss()
+    bbox_loss = nn.MSELoss()
+    optimizer = optim.Adam(model.parameters(), lr=1e-4)
+    least_val_loss = float('inf')
+
+    for epoch in range(epochs):
+        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device)
+        val_loss, val_acc = validate(model, val_loader, criterian, bbox_loss, device)
+
+        print(f'Epoch {epoch+1}/{epochs}')
+        print(f'Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}')
+        print(f'Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}')
+        
+        if val_loss < least_val_loss:
+            least_val_loss = val_loss
+            torch.save(model.state_dict(), 'best_model.pth')
+            print(f'Epoch {epoch+1}: New best model saved with val_loss: {val_loss:.4f} and val_acc: {val_acc:.4f}')
+    
+    torch.save(model.state_dict(), 'last_model.pth')
+    print('Training complete. Last model saved as last_model.pth')
+
+if __name__ == '__main__':
+    train()
+
+        
+
