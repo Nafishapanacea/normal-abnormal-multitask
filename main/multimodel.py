@@ -24,17 +24,17 @@ class Multimodel(nn.Module):
             nn.Linear(512,4)
         )
 
-    def forward(self, img, has_bbox=None):
-    
-        feats = self.backbone(img)           # [B, num_feats]
+    def forward(self, img, has_bbox=None, return_bbox=False):
+        feats = self.backbone(img)
+        cls_logits = self.classifier(feats)
 
-        cls_logits = self.classifier(feats)  # [B,1]
-        bbox_preds = self.bbox_head(feats)   # [B,4]
+        if not return_bbox:
+            return cls_logits
 
-        # ---- Mask bbox output if no bbox exists ----
-        # if has_bbox is not None:
-        has_bbox = has_bbox.unsqueeze(1).float()  # [B,1]
-        bbox_preds = bbox_preds * has_bbox        # zero out rows
+        bbox_preds = self.bbox_head(feats)
+
+        if has_bbox is not None:
+            bbox_preds = bbox_preds * has_bbox.unsqueeze(1).float()
 
         return cls_logits, bbox_preds
 

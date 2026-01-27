@@ -7,8 +7,8 @@ from transform import train_transform, val_transform
 from utils import train_one_epoch, validate
 
 img_dir = ''
-train_csv = '' 
-val_csv = ''
+train_csv = r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\Normal-abnormal-multimodel\test.csv"
+val_csv = r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\Normal-abnormal-multimodel\test.csv"
 
 epochs = 100
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -17,18 +17,31 @@ def train():
     train_dataset = XrayDataset(img_dir, train_csv, transform=train_transform)
     val_dataset = XrayDataset(img_dir, val_csv, transform=val_transform)
 
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=4)
-    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=4)
+    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
+    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     model = Multimodel().to(device)
     criterian = nn.BCEWithLogitsLoss()
     bbox_loss = nn.MSELoss()
-    optimizer = optim.Adam(model.parameters(), lr=1e-4)
+
+    backbone_params = list(model.backbone.parameters())
+    classifier_params = list(model.classifier.parameters())
+    bbox_params = list(model.bbox_head.parameters())
+
+    optimizer_cls = torch.optim.Adam(
+        backbone_params + classifier_params,
+        lr=1e-4
+    )
+
+    optimizer_bbox = torch.optim.Adam(
+        bbox_params,
+        lr=1e-4
+    )
     least_val_loss = float('inf')
 
     for epoch in range(epochs):
-        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device)
-        val_loss, val_acc = validate(model, val_loader, criterian, bbox_loss, device)
+        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criterian, bbox_loss, device)
+        val_loss, val_acc = validate(model, val_loader, criterian, device)
 
         print(f'Epoch {epoch+1}/{epochs}')
         print(f'Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}')
