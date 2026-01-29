@@ -29,7 +29,7 @@ def predict():
     image_names = []
 
     with torch.no_grad():
-        for images, labels, _, _ in test_loader:
+        for images, _, labels, _, _ in test_loader:
             images = images.to(device)
             labels = labels.to(device)
 

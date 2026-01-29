@@ -4,8 +4,9 @@ def train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criteria
     model.train()
     total_loss, total_correct, total_samples = 0, 0, 0
 
-    for images, labels, bboxes, has_bbox in train_loader:
+    for images, disease_id, labels, bboxes, has_bbox in train_loader:
         images = images.to(device)
+        disease_id = disease_id.to(device)
         labels = labels.float().unsqueeze(1).to(device)
         bboxes = bboxes.float().to(device)
         has_bbox = has_bbox.to(device)
@@ -14,7 +15,7 @@ def train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criteria
         optimizer_bbox.zero_grad()
 
         if has_bbox.any():
-            cls_logits, bbox_preds = model(images, has_bbox, return_bbox=True)
+            cls_logits, bbox_preds = model(images, disease_id, return_bbox=True)
 
             mask = has_bbox.unsqueeze(1).float()
             loss_bbox = bbox_loss(bbox_preds, bboxes)
@@ -51,7 +52,7 @@ def validate(model, val_loader, criterian, device):
     total_loss, total_correct, total_samples = 0, 0, 0
 
     with torch.no_grad():
-        for images, labels, _, _ in val_loader:
+        for images, _, labels, _, _ in val_loader:
             images = images.to(device)
             labels = labels.float().unsqueeze(1).to(device)
 

@@ -22,11 +22,15 @@ def train():
 
     model = Multimodel().to(device)
     criterian = nn.BCEWithLogitsLoss()
-    bbox_loss = nn.MSELoss()
+    bbox_loss = nn.MSELoss(reduction="none")
 
     backbone_params = list(model.backbone.parameters())
     classifier_params = list(model.classifier.parameters())
-    bbox_params = list(model.bbox_head.parameters())
+    # bbox_params = list(model.bbox_head.parameters())
+    bbox_params = (
+        list(model.bbox_head.parameters()) +
+        list(model.disease_embeddings.parameters())
+    )
 
     optimizer_cls = torch.optim.Adam(
         backbone_params + classifier_params,
