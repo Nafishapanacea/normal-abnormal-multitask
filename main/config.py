@@ -1,14 +1,4 @@
-# epochs = 100
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-# learning_rate = 
-
-# img_dir = ''
-# train_csv = r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\Normal-abnormal-multimodel\test.csv"
-# val_csv = r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\Normal-abnormal-multimodel\test.csv"
-# test_csv = ''
-# checkpoint_path= ''
-# prediction_csv = ''
+epochs = 100
 
 NUM_DISEASE_TYPE = 16
 

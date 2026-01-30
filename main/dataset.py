@@ -20,8 +20,8 @@ class XrayDataset(Dataset):
         image_id = row['image_id']
         image_path = os.path.join(self.img_dir, image_id)
         
-        image = Image.open('/home/jupyter-nafisha/normal-abnormal-multitask/padchest_normalized.png').convert('RGB')
-        # image = Image.open(image_path).convert('RGB')
+        # image = Image.open('/home/jupyter-nafisha/normal-abnormal-multitask/padchest_normalized.png').convert('RGB')
+        image = Image.open(image_path).convert('RGB')
 
         label = row['label']
         disease_name = row['class_name']
