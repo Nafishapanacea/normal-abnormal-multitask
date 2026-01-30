@@ -17,8 +17,8 @@ def train():
     train_dataset = XrayDataset(img_dir, train_csv, transform=train_transform)
     val_dataset = XrayDataset(img_dir, val_csv, transform=val_transform)
 
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=4)
-    val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=4)
+    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
+    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     model = Multimodel().to(device)
     criterian = nn.BCEWithLogitsLoss()

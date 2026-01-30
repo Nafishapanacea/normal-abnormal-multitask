@@ -3,3 +3,4 @@ bounding-box.ipynb
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
 main/best_model_batch_size_4_epoch_9.pth
+main/best_model.pth

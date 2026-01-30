@@ -1,6 +1,7 @@
 import torchvision.transforms as T
 from PIL import Image
 import numpy as np
+from albumentations.pytorch import ToTensorV2
 
 train_transform = T.Compose([
     T.Resize((224,224)),
@@ -16,12 +17,53 @@ train_transform = T.Compose([
     ),
     T.ToTensor(),
     T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    # T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 ])
 
 val_transform = T.Compose([
     T.Resize((224,224)),
     T.ToTensor(),
     T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
-    # T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
 ])
+
+
+
+train_transform_bbox = A.Compose(
+    [
+        A.Resize(224, 224),
+        A.HorizontalFlip(p=0.5),
+        A.ColorJitter(brightness=0.1, contrast=0.1, p=0.5),
+        A.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225)
+        ),
+        ToTensorV2()
+    ],
+    bbox_params=A.BboxParams(
+        format="pascal_voc",
+        label_fields=["bbox_labels"]
+    )
+)
+
+train_transform_nobbox = A.Compose(
+    [
+        A.Resize(224, 224),
+        A.HorizontalFlip(p=0.5),
+        A.ColorJitter(brightness=0.1, contrast=0.1, p=0.5),
+        A.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225)
+        ),
+        ToTensorV2()
+    ]
+)
+
+val_transform = A.Compose(
+    [
+        A.Resize(224, 224),
+        A.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225)
+        ),
+        ToTensorV2()
+    ]
+)

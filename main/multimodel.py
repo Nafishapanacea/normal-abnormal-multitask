@@ -39,8 +39,5 @@ class Multimodel(nn.Module):
         
         bbox_preds = self.bbox_head(combined)
 
-        # if has_bbox is not None:
-        #     bbox_preds = bbox_preds * has_bbox.unsqueeze(1).float()
-
         return cls_logits, bbox_preds
 

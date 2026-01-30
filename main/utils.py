@@ -1,5 +1,12 @@
 import torch
 
+def has_valid_bbox(bbox):
+    x_min, y_min, x_max, y_max = bbox
+    return (
+        x_max > x_min and
+        y_max > y_min
+    )
+
 def train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criterian, bbox_loss, device):
     model.train()
     total_loss, total_correct, total_samples = 0, 0, 0
