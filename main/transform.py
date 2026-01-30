@@ -2,6 +2,7 @@ import torchvision.transforms as T
 from PIL import Image
 import numpy as np
 from albumentations.pytorch import ToTensorV2
+import albumentations as A
 
 train_transform = T.Compose([
     T.Resize((224,224)),
@@ -40,7 +41,8 @@ train_transform_bbox = A.Compose(
     ],
     bbox_params=A.BboxParams(
         format="pascal_voc",
-        label_fields=["bbox_labels"]
+        label_fields=["bbox_labels"],
+        clip=True
     )
 )
 

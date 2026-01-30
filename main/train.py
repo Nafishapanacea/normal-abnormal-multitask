@@ -3,19 +3,22 @@ from torch import nn, optim
 from torch.utils.data import DataLoader
 from dataset import XrayDataset
 from multimodel import Multimodel
-from transform import train_transform, val_transform
+from transform import train_transform_bbox, train_transform_nobbox, val_transform
 from utils import train_one_epoch, validate
 
 img_dir = '/home/common/data_v3'
 train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
 val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val.csv'
+# img_dir = ''
+# train_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
+# val_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
 
 epochs = 100
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train():
-    train_dataset = XrayDataset(img_dir, train_csv, transform=train_transform)
-    val_dataset = XrayDataset(img_dir, val_csv, transform=val_transform)
+    train_dataset = XrayDataset(img_dir, train_csv, transform_bbox=train_transform_bbox, transform_nobbox=train_transform_nobbox)
+    val_dataset = XrayDataset(img_dir, val_csv, transform_nobbox=val_transform)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
     val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)

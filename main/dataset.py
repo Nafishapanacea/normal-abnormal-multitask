@@ -3,6 +3,7 @@ import cv2
 import torch
 from PIL import Image
 import pandas as pd
+import numpy as np
 # from utils import encode_disease
 from torch.utils.data import Dataset
 from config import disease2id
@@ -23,7 +24,8 @@ class XrayDataset(Dataset):
         image_id = row['image_id']
         image_path = os.path.join(self.img_dir, image_id)
         
-        image = Image.open(image_path).convert('RGB')
+        # image = Image.open(image_path).convert('RGB')
+        image = Image.open(r"C:\Users\Acer\Desktop\padchest_normalized.png").convert('RGB')
         image = np.array(image)
 
         label = row['label']
@@ -33,8 +35,8 @@ class XrayDataset(Dataset):
 
         bbox = [x_min, y_min, x_max, y_max]
         
-        if has_valid_bbox(bbox):
-            augmented = transform_bbox(
+        if has_valid_bbox(bbox) and self.transform_bbox:
+            augmented = self.transform_bbox(
                 image=image,
                 bboxes=[bbox],
                 bbox_labels=[0]   # dummy label (required by Albumentations)
@@ -47,7 +49,7 @@ class XrayDataset(Dataset):
             disease_id = disease2id[disease_name]
         
         else:
-            augmented = transform_nobbox(image=image)
+            augmented = self.transform_nobbox(image=image)
         
             image = augmented["image"]
             bbox = torch.zeros(4, dtype=torch.float32)
