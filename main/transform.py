@@ -42,7 +42,7 @@ train_transform_bbox = A.Compose(
     bbox_params=A.BboxParams(
         format="pascal_voc",
         label_fields=["bbox_labels"],
-        clip=True
+        # clip=True
     )
 )
 

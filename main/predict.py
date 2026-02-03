@@ -8,20 +8,26 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 def predict():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    checkpoint_path= ''
-    img_dir = ''
-    test_csv = ''
+    checkpoint_path= '/home/jupyter-nafisha/normal-abnormal-multitask/main/best_model.pth'
+    # test_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/test.csv'
+    
+    # img_dir = '/home/common/data_v3'
+    # test_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/test_withoutBbox.csv'
+
+    # padchest
+    img_dir = '/home/jupyter-nafisha/X-ray-covariates/padchest_normalized'
+    test_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/padchest_withoutBbox.csv'
 
     model = Multimodel().to(device)
     model.load_state_dict(torch.load(checkpoint_path, map_location=device))
     model.eval()
 
-    test_dataset = XrayDataset(img_dir, test_csv, transform=val_transform)
+    test_dataset = XrayDataset(img_dir, test_csv, transform_nobbox=val_transform)
     test_loader = DataLoader(
         test_dataset,
-        batch_size=4,
+        batch_size=8,
         shuffle=False,
-        num_workers=0
+        num_workers=4
     )
 
     predictions = []

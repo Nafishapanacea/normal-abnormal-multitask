@@ -24,8 +24,8 @@ class XrayDataset(Dataset):
         image_id = row['image_id']
         image_path = os.path.join(self.img_dir, image_id)
         
-        # image = Image.open(image_path).convert('RGB')
-        image = Image.open(r"C:\Users\Acer\Desktop\padchest_normalized.png").convert('RGB')
+        image = Image.open(image_path).convert('RGB')
+        # image = Image.open(r"C:\Users\Acer\Desktop\padchest_normalized.png").convert('RGB')
         image = np.array(image)
 
         label = row['label']
