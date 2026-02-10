@@ -1,33 +1,50 @@
-import torch
 from torch import nn, optim
+import torch
 from torch.utils.data import DataLoader
 from dataset import XrayDataset
 from multimodel import Multimodel
-from transform import train_transform_bbox, train_transform_nobbox, val_transform
 from utils import train_one_epoch, validate
+from transform import train_transform_bbox, train_transform_nobbox, val_transform
+from transformers import AutoModel, AutoProcessor, AutoConfig
+
+MODEL_NAME = "StanfordAIMI/XraySigLIP__vit-l-16-siglip-384__webli"
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+device = 'cpu'
+dtype = torch.float32
+
+config = AutoConfig.from_pretrained(
+    MODEL_NAME,
+    trust_remote_code=True
+)
+vision_full = AutoModel.from_pretrained(
+    MODEL_NAME,
+    config=config,
+    trust_remote_code=True
+).to(device, dtype)
+vision_encoder = vision_full.vision_model
+del vision_full
+
 
 img_dir = '/home/common/data_v3'
 train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
 val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val.csv'
-# img_dir = ''
-# train_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
-# val_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
 
 epochs = 100
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train():
-    train_dataset = XrayDataset(img_dir, train_csv, transform_bbox=train_transform_bbox, transform_nobbox=train_transform_nobbox)
+    # train_dataset = XrayDataset(img_dir, train_csv, transform_bbox=train_transform_bbox, transform_nobbox=train_transform_nobbox)
+    train_dataset = XrayDataset(img_dir, train_csv, transform_nobbox=val_transform)
     val_dataset = XrayDataset(img_dir, val_csv, transform_nobbox=val_transform)
 
     train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True, num_workers=4)
     val_loader = DataLoader(val_dataset, batch_size=8, shuffle=False, num_workers=4)
 
-    model = Multimodel().to(device)
+    model = Multimodel(vision_encoder= vision_encoder).to(device)
     criterian = nn.BCEWithLogitsLoss()
     bbox_loss = nn.MSELoss(reduction="none")
 
-    backbone_params = list(model.backbone.parameters())
+    backbone_params = list(model.vision_encoder.parameters())
     classifier_params = list(model.classifier.parameters())
     # bbox_params = list(model.bbox_head.parameters())
     bbox_params = (
