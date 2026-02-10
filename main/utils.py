@@ -29,7 +29,7 @@ def train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criteria
             loss_bbox = (loss_bbox * mask).sum() / mask.sum()
 
             loss_cls = criterian(cls_logits, labels)
-            loss = loss_cls + loss_bbox
+            loss = loss_cls + 0.01 * loss_bbox
 
             loss.backward()
             optimizer_cls.step()
@@ -49,7 +49,7 @@ def train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criteria
 
         total_samples += labels.size(0)
 
-        # print(f'Batch Loss: {loss.item():.4f}')
+        print(f'Batch Loss: {loss.item():.4f}')
 
     return total_loss / total_samples, total_correct / total_samples
 

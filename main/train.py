@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader
 from dataset import XrayDataset
 from multimodel import Multimodel
 from utils import train_one_epoch, validate
-from transform import train_transform_bbox, train_transform_nobbox, val_transform
+from transform import train_transforms
 from transformers import AutoModel, AutoProcessor, AutoConfig
 
 MODEL_NAME = "StanfordAIMI/XraySigLIP__vit-l-16-siglip-384__webli"
@@ -26,19 +26,21 @@ del vision_full
 
 
 img_dir = '/home/common/data_v3'
-train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
-val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val.csv'
+# train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
+# val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val.csv'
+
+train_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
+val_csv= 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
 
 epochs = 100
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 def train():
-    # train_dataset = XrayDataset(img_dir, train_csv, transform_bbox=train_transform_bbox, transform_nobbox=train_transform_nobbox)
-    train_dataset = XrayDataset(img_dir, train_csv, transform_nobbox=val_transform)
-    val_dataset = XrayDataset(img_dir, val_csv, transform_nobbox=val_transform)
+    train_dataset = XrayDataset(img_dir, train_csv, transform=None)
+    val_dataset = XrayDataset(img_dir, val_csv, transform=None)
 
-    train_loader = DataLoader(train_dataset, batch_size=8, shuffle=True, num_workers=4)
-    val_loader = DataLoader(val_dataset, batch_size=8, shuffle=False, num_workers=4)
+    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
+    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     model = Multimodel(vision_encoder= vision_encoder).to(device)
     criterian = nn.BCEWithLogitsLoss()
@@ -75,6 +77,8 @@ def train():
             least_val_loss = val_loss
             torch.save(model.state_dict(), 'best_model.pth')
             print(f'Epoch {epoch+1}: New best model saved with val_loss: {val_loss:.4f} and val_acc: {val_acc:.4f}')
+
+        break
     
     torch.save(model.state_dict(), 'last_model.pth')
     print('Training complete. Last model saved as last_model.pth')
