@@ -8,8 +8,7 @@ from transform import train_transforms
 from transformers import AutoModel, AutoProcessor, AutoConfig
 
 MODEL_NAME = "StanfordAIMI/XraySigLIP__vit-l-16-siglip-384__webli"
-# device = "cuda" if torch.cuda.is_available() else "cpu"
-device = 'cpu'
+device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.float32
 
 config = AutoConfig.from_pretrained(
@@ -25,48 +24,35 @@ vision_encoder = vision_full.vision_model
 del vision_full
 
 
-img_dir = '/home/common/data_v3'
+img_dir = '/home/jupyter-nafisha/Data/data_v3_CLAHE'
 # train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
-# val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val.csv'
+train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train_subset.csv'
+val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val_withoutBbox_subset.csv'
 
-train_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
-val_csv= 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
+# train_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
+# val_csv= 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
 
-epochs = 100
-# device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+epochs = 12
 
 def train():
-    train_dataset = XrayDataset(img_dir, train_csv, transform=None)
+    train_dataset = XrayDataset(img_dir, train_csv, transform=train_transforms)
     val_dataset = XrayDataset(img_dir, val_csv, transform=None)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
     val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     model = Multimodel(vision_encoder= vision_encoder).to(device)
-    criterian = nn.BCEWithLogitsLoss()
+    pos_weight = torch.tensor([0.4], device=device)
+    criterian = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    # criterian = nn.BCEWithLogitsLoss()
     bbox_loss = nn.MSELoss(reduction="none")
 
-    backbone_params = list(model.vision_encoder.parameters())
-    classifier_params = list(model.classifier.parameters())
-    # bbox_params = list(model.bbox_head.parameters())
-    bbox_params = (
-        list(model.bbox_head.parameters()) +
-        list(model.disease_embeddings.parameters())
-    )
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
 
-    optimizer_cls = torch.optim.Adam(
-        backbone_params + classifier_params,
-        lr=1e-4
-    )
-
-    optimizer_bbox = torch.optim.Adam(
-        bbox_params,
-        lr=1e-4
-    )
     least_val_loss = float('inf')
 
     for epoch in range(epochs):
-        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer_cls, optimizer_bbox, criterian, bbox_loss, device)
+        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device)
         val_loss, val_acc = validate(model, val_loader, criterian, device)
 
         print(f'Epoch {epoch+1}/{epochs}')
@@ -78,13 +64,10 @@ def train():
             torch.save(model.state_dict(), 'best_model.pth')
             print(f'Epoch {epoch+1}: New best model saved with val_loss: {val_loss:.4f} and val_acc: {val_acc:.4f}')
 
-        break
+        # break
     
     torch.save(model.state_dict(), 'last_model.pth')
     print('Training complete. Last model saved as last_model.pth')
 
 if __name__ == '__main__':
     train()
-
-        
-

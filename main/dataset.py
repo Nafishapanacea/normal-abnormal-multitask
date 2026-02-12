@@ -31,11 +31,11 @@ class XrayDataset(Dataset):
         image_id = row['image_id']
         image_path = os.path.join(self.img_dir, image_id)
         
-        # image = Image.open(image_path).convert('RGB')
-        image = Image.open(r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\3FebDemoData\Abnormal\F_AP_Lung Opacity, Pleural Effusion.jpg").convert('RGB')
+        image = Image.open(image_path).convert('RGB')
+        # image = Image.open(r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\3FebDemoData\Abnormal\F_AP_Lung Opacity, Pleural Effusion.jpg").convert('RGB')
 
-        if self.transform:
-            image = self.transform(image)
+        # if self.transform:
+        #     image = self.transform(image)
         orig_w, orig_h = image.size
 
         label = row['label']
@@ -63,6 +63,7 @@ class XrayDataset(Dataset):
                 x_max * scale_x,
                 y_max * scale_y
             ], dtype=torch.float32)
+            
             has_bbox = torch.tensor(1, dtype=torch.bool)
             disease_id = disease2id[disease_name]
 

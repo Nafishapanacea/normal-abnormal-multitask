@@ -1,0 +1,101 @@
+image_id,sex,orientation,x_min,y_min,x_max,y_max,class_name,label
+chexpert/patient33907/study4/view2_lateral.jpg,F,lateral,,,,,Lung Opacity,Abnormal
+chexpert/patient41766/study1/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient04395/study1/view1_frontal.jpg,M,PA,,,,,Edema,Abnormal
+chexpert/patient60025/study3/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+chexpert/patient29322/study2/view1_frontal.jpg,M,PA,,,,,"Cardiomegaly, Edema",Abnormal
+vinbig/9e104788d948797f70790dce9067c277.jpg,F,PA,,,,,"Aortic enlargement, Atelectasis, Other lesion",Abnormal
+chexpert/patient18306/study1/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Edema, Pleural Effusion",Abnormal
+chexpert/patient26776/study2/view2_lateral.jpg,M,lateral,,,,,No Finding,Normal
+chexpert/patient03000/study1/view1_frontal.jpg,F,PA,,,,,No Finding,Normal
+chexpert/patient19955/study1/view1_frontal.jpg,F,PA,,,,,Lung Opacity,Abnormal
+chexpert/patient59763/study3/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient04409/study1/view1_frontal.jpg,F,PA,,,,,No Finding,Normal
+chexpert/patient10279/study1/view3_lateral.jpg,M,lateral,,,,,No Finding,Normal
+chexpert/patient58586/study2/view1_frontal.jpg,M,AP,,,,,Pleural Effusion,Abnormal
+chexpert/patient27384/study5/view1_frontal.jpg,M,PA,,,,,No Finding,Normal
+chexpert/patient33783/study1/view1_frontal.jpg,F,AP,,,,,"Cardiomegaly, Lung Opacity, Edema",Abnormal
+chexpert/patient35801/study13/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Lung Lesion",Abnormal
+chexpert/patient36182/study2/view1_frontal.jpg,M,AP,,,,,"Lung Opacity, Atelectasis, Pleural Effusion",Abnormal
+chexpert/patient07806/study13/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient32277/study1/view2_lateral.jpg,F,lateral,,,,,No Finding,Normal
+chexpert/patient17808/study4/view2_lateral.jpg,M,lateral,,,,,Pleural Effusion,Abnormal
+chexpert/patient11828/study11/view1_frontal.jpg,M,AP,,,,,"Cardiomegaly, Consolidation, Pleural Effusion",Abnormal
+vinbig/a2ca9713ed2b4fb5632aa8647769c1a6.jpg,F,PA,,,,,"Lung Opacity, Pleural effusion, Pleural thickening",Abnormal
+chexpert/patient28701/study1/view1_frontal.jpg,F,PA,,,,,No Finding,Normal
+vinbig/c55180585712f9450f731270cb881511.jpg,M,PA,,,,,No finding,Normal
+chexpert/patient13608/study1/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient42621/study5/view2_frontal.jpg,M,AP,,,,,No Finding,Normal
+chexpert/patient31673/study21/view2_lateral.jpg,F,lateral,,,,,Pleural Effusion,Abnormal
+chexpert/patient23958/study9/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Pneumothorax, Pleural Effusion",Abnormal
+chexpert/patient20191/study8/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Edema, Pleural Effusion",Abnormal
+chexpert/patient30124/study1/view1_frontal.jpg,M,PA,,,,,Pneumothorax,Abnormal
+chexpert/patient06994/study2/view1_frontal.jpg,F,AP,,,,,"Edema, Atelectasis, Pleural Effusion",Abnormal
+chexpert/patient04814/study1/view2_lateral.jpg,M,lateral,,,,,"Lung Opacity, Edema, Pleural Effusion",Abnormal
+chexpert/patient26158/study2/view1_frontal.jpg,F,AP,,,,,Pleural Effusion,Abnormal
+chexpert/patient17989/study1/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+chexpert/patient07008/study4/view1_frontal.jpg,M,AP,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient24615/study1/view1_frontal.jpg,M,PA,,,,,Fracture,Abnormal
+chexpert/patient54965/study1/view1_frontal.jpg,F,AP,,,,,Edema,Abnormal
+chexpert/patient30718/study5/view2_frontal.jpg,M,PA,,,,,"Enlarged Cardiomediastinum, Lung Opacity, Pneumothorax",Abnormal
+chexpert/patient08861/study7/view2_lateral.jpg,M,lateral,,,,,Pneumothorax,Abnormal
+vinbig/def03f80d3b78a52a6f9af13565343ff.jpg,M,PA,,,,,"Aortic enlargement, ILD, Lung Opacity, Other lesion, Pleural thickening, Pulmonary fibrosis",Abnormal
+chexpert/patient09068/study1/view1_frontal.jpg,M,PA,,,,,"Cardiomegaly, Edema, Pleural Effusion",Abnormal
+chexpert/patient15428/study2/view1_frontal.jpg,F,AP,,,,,"Cardiomegaly, Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient46511/study1/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient57245/study1/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+vinbig/43c1e275bc208f31cc3b1a6c8fda1ea7.jpg,F,PA,,,,,"Cardiomegaly, Pleural effusion, Pleural thickening",Abnormal
+chexpert/patient08528/study1/view1_frontal.jpg,F,PA,,,,,"Lung Opacity, Consolidation, Pneumonia, Pleural Other",Abnormal
+chexpert/patient05987/study7/view1_frontal.jpg,M,PA,,,,,Consolidation,Abnormal
+chexpert/patient14882/study2/view1_frontal.jpg,M,PA,,,,,"Lung Lesion, Pneumonia",Abnormal
+chexpert/patient30763/study1/view2_lateral.jpg,F,lateral,,,,,No Finding,Normal
+chexpert/patient46987/study1/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient02730/study1/view2_lateral.jpg,M,lateral,,,,,No Finding,Normal
+chexpert/patient35424/study3/view1_frontal.jpg,M,AP,,,,,"Edema, Atelectasis, Pleural Effusion",Abnormal
+chexpert/patient10103/study1/view1_frontal.jpg,M,AP,,,,,"Lung Opacity, Pleural Effusion, Fracture",Abnormal
+chexpert/patient08861/study7/view1_frontal.jpg,M,PA,,,,,Pneumothorax,Abnormal
+chexpert/patient14389/study5/view2_lateral.jpg,M,lateral,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+vinbig/b6f84474725c01dca6783cb76eaacd4b.jpg,F,PA,,,,,No finding,Normal
+chexpert/patient56180/study1/view2_lateral.jpg,F,lateral,,,,,No Finding,Normal
+chexpert/patient59487/study3/view1_frontal.jpg,M,AP,,,,,"Atelectasis, Pleural Effusion",Abnormal
+chexpert/patient35866/study5/view1_frontal.jpg,M,AP,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+vinbig/8a9f6de8179f600733be50c16c7b929e.jpg,M,PA,,,,,"Aortic enlargement, Cardiomegaly, Pulmonary fibrosis",Abnormal
+chexpert/patient35568/study7/view1_frontal.jpg,F,AP,,,,,"Cardiomegaly, Lung Opacity, Pneumothorax",Abnormal
+vinbig/54573b0df6208b2a4b53c2c9c079e1b3.jpg,F,PA,,,,,No finding,Normal
+chexpert/patient48172/study1/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Atelectasis, Pneumothorax",Abnormal
+chexpert/patient46929/study3/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+chexpert/patient42487/study6/view1_frontal.jpg,F,AP,,,,,Pleural Effusion,Abnormal
+chexpert/patient07799/study1/view3_lateral.jpg,M,lateral,,,,,Lung Opacity,Abnormal
+chexpert/patient33889/study1/view1_frontal.jpg,M,PA,,,,,"Cardiomegaly, Lung Opacity",Abnormal
+chexpert/patient41295/study2/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+vinbig/510c564c69ad435168d78c084913d3aa.jpg,M,PA,,,,,No finding,Normal
+chexpert/patient36088/study3/view1_frontal.jpg,M,AP,,,,,Pneumothorax,Abnormal
+chexpert/patient18722/study1/view1_frontal.jpg,F,PA,,,,,No Finding,Normal
+chexpert/patient24292/study1/view1_frontal.jpg,M,PA,,,,,"Lung Opacity, Lung Lesion",Abnormal
+chexpert/patient11828/study2/view1_frontal.jpg,M,PA,,,,,No Finding,Normal
+chexpert/patient09421/study1/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+chexpert/patient25075/study8/view1_frontal.jpg,M,PA,,,,,"Atelectasis, Pleural Other",Abnormal
+chexpert/patient39445/study17/view1_frontal.jpg,F,AP,,,,,Lung Opacity,Abnormal
+chexpert/patient13068/study1/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient11697/study2/view1_frontal.jpg,M,PA,,,,,"Edema, Atelectasis, Pleural Effusion",Abnormal
+chexpert/patient21920/study1/view1_frontal.jpg,F,PA,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient05068/study23/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient32686/study7/view1_frontal.jpg,M,PA,,,,,"Enlarged Cardiomediastinum, Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient06981/study2/view2_lateral.jpg,M,lateral,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient55567/study1/view1_frontal.jpg,M,AP,,,,,No Finding,Normal
+chexpert/patient41171/study13/view1_frontal.jpg,F,AP,,,,,"Lung Opacity, Pleural Effusion",Abnormal
+chexpert/patient25549/study6/view2_lateral.jpg,M,lateral,,,,,No Finding,Normal
+vinbig/b3b0959ef58eb104a23fd57cab42ebde.jpg,F,PA,,,,,No finding,Normal
+vinbig/480a26ee89ee25d5bd88a3bd598ebd82.jpg,F,PA,,,,,No finding,Normal
+chexpert/patient44170/study1/view1_frontal.jpg,M,AP,,,,,Lung Opacity,Abnormal
+chexpert/patient55533/study1/view2_lateral.jpg,M,lateral,,,,,Edema,Abnormal
+chexpert/patient10257/study1/view1_frontal.jpg,M,PA,,,,,No Finding,Normal
+chexpert/patient27080/study1/view1_frontal.jpg,F,AP,,,,,No Finding,Normal
+chexpert/patient06297/study1/view1_frontal.jpg,M,PA,,,,,No Finding,Normal
+chexpert/patient24292/study15/view2_lateral.jpg,M,lateral,,,,,No Finding,Normal
+chexpert/patient28623/study1/view2_lateral.jpg,M,lateral,,,,,No Finding,Normal
+chexpert/patient23299/study3/view2_lateral.jpg,F,lateral,,,,,"Lung Opacity, Pleural Other",Abnormal
+vinbig/18ab1248c29601086e724c18891d2bee.jpg,M,PA,,,,,No finding,Normal
+chexpert/patient55868/study1/view1_frontal.jpg,F,AP,,,,,Edema,Abnormal
+chexpert/patient15107/study1/view1_frontal.jpg,F,PA,,,,,"Lung Opacity, Lung Lesion",Abnormal
+chexpert/patient31757/study7/view1_frontal.jpg,F,AP,,,,,No Finding,Normal

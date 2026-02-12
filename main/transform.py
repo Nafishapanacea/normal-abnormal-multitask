@@ -5,14 +5,14 @@ import torchvision.transforms as T
 train_transforms = T.Compose([
 
     # Rotation ±10–15 degrees
-    T.RandomRotation(degrees=15),
+    # T.RandomRotation(degrees=15),
 
-    # Translation ±10–15%
-    T.RandomAffine(
-        degrees=0,
-        translate=(0.1, 0.15),
-        scale=(0.9, 1.1) 
-    ),
+    # # Translation ±10–15%
+    # T.RandomAffine(
+    #     degrees=0,
+    #     translate=(0.1, 0.15),
+    #     scale=(0.9, 1.1) 
+    # ),
 
     # Brightness / contrast jitter
     T.ColorJitter(
