@@ -52,16 +52,25 @@ class XrayDataset(Dataset):
         proc_h, proc_w = pixel_values.shape[-2:]
 
         if has_valid_bbox(bbox):
-            scale_x = proc_w / orig_w
-            scale_y = proc_h / orig_h
+            # scale_x = proc_w / orig_w
+            # scale_y = proc_h / orig_h
+
+            # x_min, y_min, x_max, y_max = bbox
+
+            # bbox = torch.tensor([
+            #     x_min * scale_x,
+            #     y_min * scale_y,
+            #     x_max * scale_x,
+            #     y_max * scale_y
+            # ], dtype=torch.float32)
 
             x_min, y_min, x_max, y_max = bbox
 
             bbox = torch.tensor([
-                x_min * scale_x,
-                y_min * scale_y,
-                x_max * scale_x,
-                y_max * scale_y
+                x_min / orig_w,
+                y_min / orig_h,
+                x_max / orig_w,
+                y_max / orig_h
             ], dtype=torch.float32)
             
             has_bbox = torch.tensor(1, dtype=torch.bool)

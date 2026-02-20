@@ -22,24 +22,24 @@ def train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device
         
         optimizer.zero_grad()
 
-        # if has_bbox.any():
-        #     cls_logits, bbox_preds = model(images, disease_id, return_bbox=True)
+        if has_bbox.any():
+            cls_logits, bbox_preds = model(images, disease_id, return_bbox=True)
 
-        #     mask = has_bbox.unsqueeze(1).float()
-        #     loss_bbox = bbox_loss(bbox_preds, bboxes)
-        #     loss_bbox = (loss_bbox * mask).sum() / mask.sum()
+            mask = has_bbox.unsqueeze(1).float()
+            loss_bbox = bbox_loss(bbox_preds, bboxes)
+            loss_bbox = (loss_bbox * mask).sum() / mask.sum()
 
-        #     loss_cls = criterian(cls_logits, labels)
-        #     loss = loss_cls + 0.01 * loss_bbox
+            loss_cls = criterian(cls_logits, labels)
+            loss = loss_cls + loss_bbox
 
-        #     loss.backward()
-        #     optimizer.step()
+            loss.backward()
+            optimizer.step()
 
-        # else:
-        cls_logits = model(images)
-        loss = criterian(cls_logits, labels)
-        loss.backward()
-        optimizer.step()  
+        else:
+            cls_logits = model(images)
+            loss = criterian(cls_logits, labels)
+            loss.backward()
+            optimizer.step()  
 
         total_loss += loss.item() * labels.size(0)
 
@@ -80,5 +80,6 @@ def validate(model, val_loader, criterian, device):
             # print(preds)
             total_correct += (preds == labels).sum().item()
             total_samples += labels.size(0)
+            # break
 
     return total_loss / total_samples, total_correct / total_samples

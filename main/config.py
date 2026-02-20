@@ -1,6 +1,6 @@
 epochs = 100
 
-NUM_DISEASE_TYPE = 16
+NUM_DISEASE_TYPE = 18
 
 disease2id = {
     'no_bbox': 0,
@@ -18,5 +18,7 @@ disease2id = {
     'Pleural effusion': 12,
     'Pleural thickening': 13,
     'Pneumothorax': 14,
-    'Pulmonary fibrosis': 15
+    'Pulmonary fibrosis': 15, 
+    'left_active_tb': 16,
+    'right_active_tb': 17
 }

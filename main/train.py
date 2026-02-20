@@ -24,13 +24,14 @@ vision_encoder = vision_full.vision_model
 del vision_full
 
 
-img_dir = '/home/jupyter-nafisha/Data/data_v3_CLAHE'
+# img_dir = '/home/jupyter-nafisha/Data/data_v3_CLAHE'
 # train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
-train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train_subset.csv'
-val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val_withoutBbox_subset.csv'
+# train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/vinbig_balanced_100.csv'
+# val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val_withoutBbox_subset.csv'
 
-# train_csv = 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
-# val_csv= 'c:\\Users\\Acer\\Desktop\\Office\\X-ray-NormalVsAbnormal\\Normal-abnormal-multitask\\CSVs\\train.csv'
+img_dir = ''
+train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/trainWithTB.csv'
+val_csv= '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/valWithTB.csv'
 
 epochs = 12
 
@@ -42,12 +43,12 @@ def train():
     val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     model = Multimodel(vision_encoder= vision_encoder).to(device)
-    pos_weight = torch.tensor([0.4], device=device)
+    pos_weight = torch.tensor([0.75], device=device)
     criterian = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
     # criterian = nn.BCEWithLogitsLoss()
     bbox_loss = nn.MSELoss(reduction="none")
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
 
     least_val_loss = float('inf')
 

@@ -7,3 +7,5 @@ main/best_model_densenet.pth
 main/last_model_densenet.pth
 main/last_model_chexpert-v1.pth
 /GradCam_results_MT
+main/best_model.pth
+main/last_model.pth

@@ -1,0 +1,101 @@
+Unnamed: 0,image_id,sex,orientation,x_min,y_min,x_max,y_max,class_name,label
+1761,vinbig/b75b0115ce7e890c8d3cc739cfc8c089.jpg,F,PA,1143.0,489.0,1422.0,845.0,Aortic enlargement,Abnormal
+593,vinbig/fc24ad13f52fb8b4135f5a18a982a1cf.jpg,M,PA,775.0,1080.0,908.0,1342.0,Pulmonary fibrosis,Abnormal
+333,vinbig/6de2efbed6b23441ab46cbcfa980e4bd.jpg,M,PA,1519.0,1205.0,1954.0,1652.0,Aortic enlargement,Abnormal
+2197,vinbig/0c8c247e84a3c4fe4d40846bdeac105f.jpg,F,PA,,,,,No finding,Normal
+316,vinbig/dc0891b0748b90ad95dbd023222ecf27.jpg,M,PA,,,,,No finding,Normal
+294,vinbig/eab1fcceca65974f9a463940626586cc.jpg,F,PA,,,,,No finding,Normal
+751,vinbig/07a79abc9fc963ee9a7f36234e011c78.jpg,M,PA,,,,,No finding,Normal
+1273,vinbig/9548c30d5cd9f5051877d7070e1dc33c.jpg,M,PA,1391.0,297.0,1747.0,397.0,Pleural thickening,Abnormal
+1506,vinbig/401dcf59383ac272c5658e1650f40c3c.jpg,M,PA,,,,,No finding,Normal
+3305,vinbig/b84c0f9809494765a2cb12c63e21c8d1.jpg,M,PA,,,,,No finding,Normal
+2360,vinbig/3de366aa826bd76b997fb4d9d3b33553.jpg,F,PA,,,,,No finding,Normal
+1213,vinbig/d3bc02cc13302e2f442d937a403b2fbe.jpg,M,PA,,,,,No finding,Normal
+560,vinbig/9823c13f2412bfef40728c2f08972b03.jpg,F,PA,244.0,2118.0,375.0,2207.0,Pleural thickening,Abnormal
+910,vinbig/9658074bb66e4e68d6fab1fd949fa62b.jpg,M,PA,,,,,No finding,Normal
+823,vinbig/1b5f927abb8fd8e0800d2ad31a5620c1.jpg,M,PA,1013.0,829.0,1227.0,1063.0,Aortic enlargement,Abnormal
+314,vinbig/2ac3fed2ec787236a38535de761df4a1.jpg,F,PA,,,,,No finding,Normal
+993,vinbig/935a7deda5e549ec48293dea791b7c5a.jpg,F,PA,542.0,1367.0,1102.0,1954.0,Infiltration,Abnormal
+780,vinbig/8e3cbb3460e37bd5418cb4bc23c07af8.jpg,M,PA,541.0,219.0,1086.0,438.0,Pleural thickening,Abnormal
+1284,vinbig/4d4bffa2926bfcb4851b5e968136b047.jpg,M,PA,,,,,No finding,Normal
+778,vinbig/43f22f6c7dbc889c799fb3c49bfecdf6.jpg,F,PA,,,,,No finding,Normal
+311,vinbig/e25910b3bb83c9fbe7601dfaa4032e55.jpg,F,PA,988.0,1501.0,2151.0,1937.0,Cardiomegaly,Abnormal
+2663,vinbig/4d314293037f079e4916231d262212d3.jpg,F,PA,742.0,827.0,809.0,885.0,Nodule/Mass,Abnormal
+65,vinbig/eb7e617f397932fb61064ae312ead3b1.jpg,M,PA,,,,,No finding,Normal
+761,vinbig/6657521efe526b165a93b270b2e9b513.jpg,M,PA,,,,,No finding,Normal
+392,vinbig/7486840374f87cde690928d1b33aa97c.jpg,F,PA,1689.0,1167.0,1876.0,1263.0,Pulmonary fibrosis,Abnormal
+2683,vinbig/f25c4d2cfdf2eb08c8db6f16d8f71bbe.jpg,F,PA,,,,,No finding,Normal
+178,vinbig/66933a35e5d688feb7c68a2e01e73e70.jpg,F,PA,,,,,No finding,Normal
+2320,vinbig/46f3ff375571079569284a232627d27c.jpg,F,PA,318.0,1438.0,552.0,1690.0,Nodule/Mass,Abnormal
+44,vinbig/36ce9c445dc3d9c1773d39281e40c14b.jpg,F,PA,,,,,No finding,Normal
+96,vinbig/97bf1159c3d5a11144527bd31d2ee628.jpg,F,PA,1176.0,670.0,1387.0,919.0,Aortic enlargement,Abnormal
+1489,vinbig/c20ef53ae3bb3763037d2cd547520c62.jpg,F,PA,,,,,No finding,Normal
+372,vinbig/02cbfa27d9e4b1d8c279932cd82e0730.jpg,M,PA,,,,,No finding,Normal
+193,vinbig/aabbf5ce0173007aaba2e6df836b10ea.jpg,M,PA,57.0,1645.0,232.0,2024.0,Pleural effusion,Abnormal
+2765,vinbig/9fcac0e95f66d088f699258ebec37c9e.jpg,M,PA,,,,,No finding,Normal
+442,vinbig/6fe8a6cb3929ebdfa1cc078b0318e363.jpg,M,PA,720.0,1278.0,1633.0,1653.0,Cardiomegaly,Abnormal
+485,vinbig/fec3d23bab6ec6e296db2954b31c74c4.jpg,F,PA,,,,,No finding,Normal
+72,vinbig/7db70125d7739e6cd0c442e7b7592d4c.jpg,M,PA,841.0,937.0,1149.0,1435.0,Pulmonary fibrosis,Abnormal
+142,vinbig/d3b82f17d58da80f02e2b0812606cee2.jpg,M,PA,643.0,419.0,1297.0,1113.0,Lung Opacity,Abnormal
+1014,vinbig/632eba3c9fcf89a1929f1d87a7128218.jpg,F,PA,,,,,No finding,Normal
+129,vinbig/5ae3a513bfde7fb9528b6830548aab36.jpg,F,PA,,,,,No finding,Normal
+1114,vinbig/77878b78f958b8cfbafb4da7130feaec.jpg,F,PA,,,,,No finding,Normal
+243,vinbig/17c605c7398e5c8ba72d279fcef9d95c.jpg,F,PA,,,,,No finding,Normal
+804,vinbig/b3c2272bc118aea4ddac51463090d75e.jpg,F,PA,,,,,No finding,Normal
+789,vinbig/15f023463d88b8f8bc852a9a7b72e6e3.jpg,M,PA,1512.0,1161.0,2281.0,2546.0,Consolidation,Abnormal
+389,vinbig/0de6a6b3d7689c2f261f2fc385d3b667.jpg,M,PA,,,,,No finding,Normal
+774,vinbig/27f97551617fd179a93f91a44f8bdc61.jpg,F,PA,,,,,No finding,Normal
+14,vinbig/f90442f2620175fa21b6afeda865df11.jpg,M,PA,467.0,1125.0,795.0,1418.0,Pulmonary fibrosis,Abnormal
+1683,vinbig/294c1b068fb6ecfd27f5106e744ddb4b.jpg,M,PA,,,,,No finding,Normal
+1830,vinbig/e443471026e11f9cdf418dca3f35017f.jpg,M,PA,596.0,820.0,652.0,952.0,Pulmonary fibrosis,Abnormal
+3218,vinbig/f7c13055c1aa432a78ed8c172df3a6d1.jpg,F,PA,,,,,No finding,Normal
+2,vinbig/e4b12e030788bbd71f7ad72fa1ee5a71.jpg,M,PA,,,,,No finding,Normal
+289,vinbig/213f1932f2f8b002bc2237a93bc82c96.jpg,F,PA,,,,,No finding,Normal
+429,vinbig/20b3714dd6c53ce0f439e05ca97b60e8.jpg,F,PA,,,,,No finding,Normal
+683,vinbig/e2c6c53f327415b904d9bae9944acdf9.jpg,M,PA,,,,,No finding,Normal
+1201,vinbig/157a5f10f07b0c68a0dae91fd9be51aa.jpg,F,PA,,,,,No finding,Normal
+668,vinbig/5f09150b3d82a8e7103c7777278389dd.jpg,F,PA,900.0,1756.0,1910.0,2018.0,Cardiomegaly,Abnormal
+1244,vinbig/36172f7de00633f73845c217d3420091.jpg,F,PA,,,,,No finding,Normal
+38,vinbig/9710d919aaab2bdac30900f140de109b.jpg,F,PA,201.0,2323.0,311.0,2494.0,Pleural effusion,Abnormal
+89,vinbig/c89fdbd26b69a96edbef96f88a4004a5.jpg,F,PA,,,,,No finding,Normal
+23,vinbig/872fcda56bcda425012eef3cbf6ebf95.jpg,F,PA,1289.0,497.0,1851.0,1136.0,Other lesion,Abnormal
+582,vinbig/84fe5801e7bcf024bb26b7c9285e43bc.jpg,F,PA,1311.0,689.0,1623.0,976.0,Aortic enlargement,Abnormal
+83,vinbig/9809f0d8f7d4654a2599c052a5b83dbd.jpg,M,PA,583.0,1130.0,890.0,1360.0,Pulmonary fibrosis,Abnormal
+1323,vinbig/d9e1d3236f81f2cbdbe29bb94b7d45e2.jpg,F,PA,741.0,1390.0,1754.0,1822.0,Cardiomegaly,Abnormal
+3335,vinbig/f6b575c538dee65217877a75427f6cf7.jpg,M,PA,,,,,No finding,Normal
+103,vinbig/c5ad7caaee32f3d5647a993ab299b1c1.jpg,F,PA,1450.0,413.0,1728.0,1065.0,Pleural thickening,Abnormal
+1617,vinbig/84073a6a8201f339407be82dda7e1303.jpg,F,PA,1493.0,853.0,1619.0,932.0,Pulmonary fibrosis,Abnormal
+2084,vinbig/d86ce75ded56c958c2a417d6ab2ada3f.jpg,M,PA,,,,,No finding,Normal
+43,vinbig/0ee6114a53757f4531d42e8b19b4751c.jpg,M,PA,1354.0,724.0,1691.0,1054.0,Aortic enlargement,Abnormal
+618,vinbig/bc87ef332a3c532a7e86893cae30e127.jpg,F,PA,2301.0,1551.0,2364.0,1635.0,Other lesion,Abnormal
+106,vinbig/e7ae00eef602436f48a44b36dc79b383.jpg,F,PA,824.0,1428.0,1717.0,1721.0,Cardiomegaly,Abnormal
+0,vinbig/0c7a38f293d5f5e4846aa4ca6db4daf1.jpg,M,PA,1347.0,245.0,2188.0,2169.0,ILD,Abnormal
+2383,vinbig/23ac6234107db29775e5a285c5b0e364.jpg,M,PA,,,,,No finding,Normal
+107,vinbig/c80fe973b34b764cf37e43efb755c0b8.jpg,M,PA,1486.0,818.0,1804.0,1141.0,Aortic enlargement,Abnormal
+1589,vinbig/f224161c258185b891f08b298c9a517d.jpg,M,PA,,,,,No finding,Normal
+281,vinbig/dff6766d2464bfe77de7f6f19edbf51a.jpg,M,PA,619.0,529.0,1058.0,813.0,Pulmonary fibrosis,Abnormal
+1130,vinbig/7e3f75426ef14f71c12bc517925d75e9.jpg,M,PA,674.0,370.0,1139.0,552.0,Pleural thickening,Abnormal
+2924,vinbig/c8e9aaf309d856f9a7275115fef4a423.jpg,F,PA,756.0,1195.0,1828.0,1572.0,Cardiomegaly,Abnormal
+2457,vinbig/a8ba44710ed9f78bdf9a52c28da82ace.jpg,F,PA,,,,,No finding,Normal
+50,vinbig/da4f74aa1442d910174204f6dfb0d074.jpg,M,PA,1238.0,582.0,1529.0,888.0,Aortic enlargement,Abnormal
+1963,vinbig/98d31d7df7863752c8f85cd0be34ecc5.jpg,M,PA,776.0,1370.0,1757.0,1710.0,Cardiomegaly,Abnormal
+663,vinbig/834088205c0b6066ebacac10dc6375d5.jpg,F,PA,1290.0,750.0,1636.0,1034.0,Aortic enlargement,Abnormal
+1167,vinbig/9d66132dc1a3e262df38c3ad25626a00.jpg,M,PA,1340.0,1050.0,1634.0,1426.0,Aortic enlargement,Abnormal
+2585,vinbig/f1d1d044621a14cf86416b00c84139dc.jpg,F,PA,,,,,No finding,Normal
+844,vinbig/a2cb3324f157241988e4061a60c9e136.jpg,F,PA,,,,,No finding,Normal
+155,vinbig/32aba4a2e972fae5f1485d2f40bd4d26.jpg,F,PA,,,,,No finding,Normal
+1306,vinbig/144d37bbd2dea37c4b1286207f4ba909.jpg,M,PA,1241.0,1787.0,2601.0,2230.0,Cardiomegaly,Abnormal
+1124,vinbig/189c815777fa485aae9d996e4a567650.jpg,F,PA,,,,,No finding,Normal
+555,vinbig/0452ab5ee9d46606d5d6fbcf5a206eee.jpg,F,PA,,,,,No finding,Normal
+1891,vinbig/df304fefd393f599b2f3e1d83774a1f0.jpg,F,PA,,,,,No finding,Normal
+312,vinbig/db65300cb20b50abb1e3b30f908ef3e0.jpg,M,PA,1094.0,125.0,2095.0,1861.0,Pleural effusion,Abnormal
+349,vinbig/b23ee0544bba6ed7301111820f8de415.jpg,M,PA,2063.0,606.0,2399.0,1072.0,Other lesion,Abnormal
+168,vinbig/1066a058b5bae597f2dbb33780c2577d.jpg,F,PA,1831.0,485.0,1883.0,539.0,Nodule/Mass,Abnormal
+678,vinbig/9209eb472d8c5200cbc8ad2015cbf1a2.jpg,M,PA,1549.0,535.0,1629.0,596.0,Pleural thickening,Abnormal
+1185,vinbig/02d9d0c89022adc381c23e72add7c389.jpg,M,PA,767.0,1620.0,1813.0,1902.0,Cardiomegaly,Abnormal
+1713,vinbig/75c70312985c506280ee77675cc07a1e.jpg,F,PA,,,,,No finding,Normal
+11,vinbig/a84c5a7adea6bbde88dc2ac6747ca443.jpg,F,PA,1378.0,756.0,1681.0,1196.0,Aortic enlargement,Abnormal
+2480,vinbig/d7d4917de30bc1fe416ca55703dfae65.jpg,M,PA,653.0,1931.0,1705.0,2178.0,Cardiomegaly,Abnormal
+323,vinbig/db78dd82a4b44d2d329e624a1c0ccec8.jpg,M,PA,,,,,No finding,Normal
+136,vinbig/fda942e02952bbbe30fb7525fdf408ea.jpg,M,PA,651.0,1344.0,1796.0,1778.0,Cardiomegaly,Abnormal
+1526,vinbig/a8712873fe9accd992e9b306cf2d1f25.jpg,M,PA,468.0,1140.0,1039.0,1261.0,Pulmonary fibrosis,Abnormal
