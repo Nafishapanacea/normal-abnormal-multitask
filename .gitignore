@@ -9,3 +9,6 @@ main/last_model_chexpert-v1.pth
 /GradCam_results_MT
 main/best_model.pth
 main/last_model.pth
+best_model_balancedBCE.pth
+best_model_chexpert_balanced.pth
+chexpert-multitask-plottings.pdf

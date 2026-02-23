@@ -18,6 +18,7 @@ def train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device
         disease_id = disease_id.to(device)
         labels = labels.float().unsqueeze(1).to(device)
         bboxes = bboxes.float().to(device)
+        # print("bbox", bboxes)
         has_bbox = has_bbox.to(device)
         
         optimizer.zero_grad()

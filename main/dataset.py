@@ -49,7 +49,7 @@ class XrayDataset(Dataset):
             return_tensors="pt"
         )
         pixel_values = inputs['pixel_values'].squeeze(0)  
-        proc_h, proc_w = pixel_values.shape[-2:]
+        # proc_h, proc_w = pixel_values.shape[-2:]
 
         if has_valid_bbox(bbox):
             # scale_x = proc_w / orig_w
@@ -80,6 +80,8 @@ class XrayDataset(Dataset):
             bbox = torch.zeros(4, dtype=torch.float32)
             has_bbox = torch.tensor(0, dtype=torch.bool)
             disease_id= disease2id['no_bbox']
+
+        # print("These are:- ",bbox, has_bbox)
         
         disease_id = torch.tensor(disease_id, dtype=torch.long)
         label = 0 if row['label'] == 'Normal' else 1

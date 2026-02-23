@@ -25,27 +25,28 @@ del vision_full
 
 
 # img_dir = '/home/jupyter-nafisha/Data/data_v3_CLAHE'
-# train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
+# # train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
 # train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/vinbig_balanced_100.csv'
 # val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val_withoutBbox_subset.csv'
 
 img_dir = ''
-train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/trainWithTB.csv'
+train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/trainWithTB-withAdditionalNormal.csv'
 val_csv= '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/valWithTB.csv'
 
 epochs = 12
 
 def train():
     train_dataset = XrayDataset(img_dir, train_csv, transform=train_transforms)
+    # train_dataset = XrayDataset(img_dir, train_csv, transform=None)
     val_dataset = XrayDataset(img_dir, val_csv, transform=None)
 
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
     val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
     model = Multimodel(vision_encoder= vision_encoder).to(device)
-    pos_weight = torch.tensor([0.75], device=device)
-    criterian = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    # criterian = nn.BCEWithLogitsLoss()
+    # pos_weight = torch.tensor([0.8], device=device)
+    # criterian = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+    criterian = nn.BCEWithLogitsLoss()
     bbox_loss = nn.MSELoss(reduction="none")
 
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
