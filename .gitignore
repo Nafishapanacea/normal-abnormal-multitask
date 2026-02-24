@@ -2,13 +2,12 @@ bounding-box.ipynb
 *.pyc
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
-main/best_model_batch_size_4_epoch_9.pth
 main/best_model_densenet.pth
 main/last_model_densenet.pth
-main/last_model_chexpert-v1.pth
 /GradCam_results_MT
 main/best_model.pth
 main/last_model.pth
-best_model_balancedBCE.pth
-best_model_chexpert_balanced.pth
+main/version2.pth
+main/version3.pth
+main/version4.pth
 chexpert-multitask-plottings.pdf

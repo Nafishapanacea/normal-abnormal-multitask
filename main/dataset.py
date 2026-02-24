@@ -32,56 +32,63 @@ class XrayDataset(Dataset):
         image_path = os.path.join(self.img_dir, image_id)
         
         image = Image.open(image_path).convert('RGB')
-        # image = Image.open(r"C:\Users\Acer\Desktop\Office\X-ray-NormalVsAbnormal\3FebDemoData\Abnormal\F_AP_Lung Opacity, Pleural Effusion.jpg").convert('RGB')
-
-        # if self.transform:
-        #     image = self.transform(image)
         orig_w, orig_h = image.size
+
+        # Convert PIL → NumPy (Albumentations requirement)
+        image_np = np.array(image)
 
         label = row['label']
         disease_name = row['class_name']
 
         x_min, y_min, x_max, y_max = row[["x_min", "y_min", "x_max", "y_max"]]
         bbox = [x_min, y_min, x_max, y_max]
-
-        inputs = processor(
-            images=image,
-            return_tensors="pt"
-        )
-        pixel_values = inputs['pixel_values'].squeeze(0)  
-        # proc_h, proc_w = pixel_values.shape[-2:]
+        print('image_path', image_path, 'and ', bbox)
 
         if has_valid_bbox(bbox):
-            # scale_x = proc_w / orig_w
-            # scale_y = proc_h / orig_h
-
-            # x_min, y_min, x_max, y_max = bbox
-
-            # bbox = torch.tensor([
-            #     x_min * scale_x,
-            #     y_min * scale_y,
-            #     x_max * scale_x,
-            #     y_max * scale_y
-            # ], dtype=torch.float32)
-
-            x_min, y_min, x_max, y_max = bbox
-
-            bbox = torch.tensor([
+            bbox = [
                 x_min / orig_w,
                 y_min / orig_h,
                 x_max / orig_w,
                 y_max / orig_h
-            ], dtype=torch.float32)
-            
-            has_bbox = torch.tensor(1, dtype=torch.bool)
-            disease_id = disease2id[disease_name]
-
+            ]
+            class_labels = [1]   # dummy label required by Albumentations
         else:
-            bbox = torch.zeros(4, dtype=torch.float32)
-            has_bbox = torch.tensor(0, dtype=torch.bool)
-            disease_id= disease2id['no_bbox']
+            bbox = []
+            class_labels = []
 
-        # print("These are:- ",bbox, has_bbox)
+        # --- Apply augmentation BEFORE processor ---
+        if self.transform:
+            transformed = self.transform(
+                image=image_np,
+                bboxes=[bbox] if bbox else [],
+                class_labels=class_labels
+            )
+
+            image_np = transformed['image']
+
+            if transformed['bboxes']:
+                bbox = transformed['bboxes'][0]
+                has_bbox = torch.tensor(1, dtype=torch.bool)
+                disease_id = disease2id[disease_name]
+            else:
+                bbox = [0, 0, 0, 0]
+                has_bbox = torch.tensor(0, dtype=torch.bool)
+                disease_id = disease2id['no_bbox']
+        else:
+            if bbox:
+                has_bbox = torch.tensor(1, dtype=torch.bool)
+                disease_id = disease2id[disease_name]
+            else:
+                bbox = [0, 0, 0, 0]
+                has_bbox = torch.tensor(0, dtype=torch.bool)
+                disease_id = disease2id['no_bbox']
+            
+        inputs = processor(
+            images=image_np,
+            return_tensors="pt"
+        )
+        pixel_values = inputs['pixel_values'].squeeze(0)  
+        bbox = torch.tensor(bbox, dtype=torch.float32)
         
         disease_id = torch.tensor(disease_id, dtype=torch.long)
         label = 0 if row['label'] == 'Normal' else 1
