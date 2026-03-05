@@ -7,7 +7,7 @@ def has_valid_bbox(bbox):
         y_max > y_min
     )
 
-def train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device):
+def train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, bbox_weight, device):
     model.train()
     total_loss, total_correct, total_samples = 0, 0, 0
 
@@ -31,7 +31,7 @@ def train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device
             loss_bbox = (loss_bbox * mask).sum() / mask.sum()
 
             loss_cls = criterian(cls_logits, labels)
-            loss = loss_cls + loss_bbox
+            loss = loss_cls + bbox_weight * loss_bbox
 
             loss.backward()
             optimizer.step()
@@ -52,7 +52,7 @@ def train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device
 
         # print(f'Batch Loss: {loss.item():.4f}')
 
-        if count % 500 ==0:
+        if count % 1000 ==0:
             print("Step", count)
         count+=1
 

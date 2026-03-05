@@ -42,7 +42,6 @@ class XrayDataset(Dataset):
 
         x_min, y_min, x_max, y_max = row[["x_min", "y_min", "x_max", "y_max"]]
         bbox = [x_min, y_min, x_max, y_max]
-        print('image_path', image_path, 'and ', bbox)
 
         if has_valid_bbox(bbox):
             bbox = [

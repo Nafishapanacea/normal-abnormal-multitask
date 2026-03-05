@@ -1,75 +1,123 @@
-from torch import nn, optim
+
 import torch
+import optuna
+from torch import nn
 from torch.utils.data import DataLoader
 from dataset import XrayDataset
 from multimodel import Multimodel
 from utils import train_one_epoch, validate
 from transform import train_transforms
-from transformers import AutoModel, AutoProcessor, AutoConfig
+from transformers import AutoModel, AutoConfig
 
 MODEL_NAME = "StanfordAIMI/XraySigLIP__vit-l-16-siglip-384__webli"
+
 device = "cuda" if torch.cuda.is_available() else "cpu"
 dtype = torch.float32
 
-config = AutoConfig.from_pretrained(
-    MODEL_NAME,
-    trust_remote_code=True
-)
-vision_full = AutoModel.from_pretrained(
-    MODEL_NAME,
-    config=config,
-    trust_remote_code=True
-).to(device, dtype)
-vision_encoder = vision_full.vision_model
-del vision_full
-
-
-# img_dir = '/home/jupyter-nafisha/Data/data_v3_CLAHE'
-# # train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/train.csv'
-# train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/vinbig_balanced_100.csv'
-# val_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/val_withoutBbox_subset.csv'
-
 img_dir = ''
-train_csv = '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/trainWithTB-withAdditionalNormal.csv'
-val_csv= '/home/jupyter-nafisha/normal-abnormal-multitask/CSVs/valWithTB.csv'
+train_csv = '/home/ubuntu/Documents/Nafisha/chest-xray-NormalAbnormal/normal-abnormal-multitask/CSVs/trainWithTB-withAdditionalNormal.csv'
+val_csv= '/home/ubuntu/Documents/Nafisha/chest-xray-NormalAbnormal/normal-abnormal-multitask/CSVs/valWithTB.csv'
 
-epochs = 12
+EPOCHS = 8
 
-def train():
-    train_dataset = XrayDataset(img_dir, train_csv, transform=train_transforms)
-    # train_dataset = XrayDataset(img_dir, train_csv, transform=None)
-    val_dataset = XrayDataset(img_dir, val_csv, transform=None)
+    
+# Dataset
+train_dataset = XrayDataset(img_dir, train_csv, transform=train_transforms)
+val_dataset = XrayDataset(img_dir, val_csv, transform=None)
 
-    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
-    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
+train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True, num_workers=4)
+val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False, num_workers=4)
 
-    model = Multimodel(vision_encoder= vision_encoder).to(device)
-    # pos_weight = torch.tensor([0.8], device=device)
-    # criterian = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
-    criterian = nn.BCEWithLogitsLoss()
+def objective(trial):
+
+    # Parameters that can be tuned
+    lr = trial.suggest_float("lr", 1e-6, 5e-5, log=True)
+    weight_decay = trial.suggest_float("weight_decay", 1e-6, 1e-3, log=True)
+    pos_weight_val = trial.suggest_float("pos_weight", 1.0, 4.0)
+    bbox_weight = trial.suggest_float("bbox_weight", 0.1, 1.0)
+    dropout = trial.suggest_float("dropout", 0.2, 0.5)
+
+    # Reload the model after each trial
+    config = AutoConfig.from_pretrained(
+        MODEL_NAME,
+        trust_remote_code=True
+    )
+
+    vision_full = AutoModel.from_pretrained(
+        MODEL_NAME,
+        config=config,
+        trust_remote_code=True
+    ).to(device, dtype)
+
+    vision_encoder = vision_full.vision_model
+    del vision_full
+
+    # Model
+    model = Multimodel(vision_encoder=vision_encoder).to(device)
+
+    # change dropout dynamically
+    for module in model.modules():
+        if isinstance(module, nn.Dropout):
+            module.p = dropout
+
+    # Loss
+    pos_weight = torch.tensor([pos_weight_val]).to(device)
+
+    criterion = nn.BCEWithLogitsLoss(pos_weight=pos_weight)
+
     bbox_loss = nn.MSELoss(reduction="none")
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-5)
+    # Optimizer
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=lr,
+        weight_decay=weight_decay
+    )
 
-    least_val_loss = float('inf')
 
-    for epoch in range(epochs):
-        train_loss, train_acc = train_one_epoch(model, train_loader, optimizer, criterian, bbox_loss, device)
-        val_loss, val_acc = validate(model, val_loader, criterian, device)
+    best_val_loss = float("inf")
 
-        print(f'Epoch {epoch+1}/{epochs}')
-        print(f'Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}')
-        print(f'Val Loss: {val_loss:.4f}, Val Acc: {val_acc:.4f}')
-        
-        if val_loss < least_val_loss:
-            least_val_loss = val_loss
-            torch.save(model.state_dict(), 'best_model.pth')
-            print(f'Epoch {epoch+1}: New best model saved with val_loss: {val_loss:.4f} and val_acc: {val_acc:.4f}')
+    for epoch in range(EPOCHS):
 
-        # break
-    
-    torch.save(model.state_dict(), 'last_model.pth')
-    print('Training complete. Last model saved as last_model.pth')
+        train_loss, train_acc = train_one_epoch(
+            model,
+            train_loader,
+            optimizer,
+            criterion,
+            bbox_loss,
+            bbox_weight,
+            device
+        )
 
-if __name__ == '__main__':
-    train()
+        val_loss, val_acc = validate(
+            model,
+            val_loader,
+            criterion,
+            device
+        )
+
+        if val_loss < best_val_loss:
+            best_val_loss = val_loss
+
+        print(
+            f"Trial {trial.number} Epoch {epoch+1} | "
+            f"TrainLoss {train_loss:.4f} ValLoss {val_loss:.4f}"
+        )
+
+        break
+
+    return best_val_loss
+
+
+# ---------- Run Optuna ----------
+if __name__ == "__main__":
+
+    study = optuna.create_study(direction="minimize")
+
+    study.optimize(
+        objective,
+        n_trials=20   # number of experiments
+    )
+
+    print("\nBest trial:")
+    print(study.best_trial.params)

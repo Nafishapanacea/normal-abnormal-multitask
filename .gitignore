@@ -11,3 +11,11 @@ main/version2.pth
 main/version3.pth
 main/version4.pth
 chexpert-multitask-plottings.pdf
+best_model_0.75Abnormal.pth
+best_model_balancedBCE.pth
+predict2.ipynb
+version10.pth
+version5.pth
+version6.pth
+version8.pth
+version9.pth
